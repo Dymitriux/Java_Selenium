@@ -45,7 +45,7 @@ public class PageElementLocatorHandler implements MethodInterceptor {
                 WebElement element = locateElement();
 
                 pageElementExample2.setRootElement(element);
-//                    pageElement.setWebDriver(webDriver);
+//                    pageElementExample2.setWebDriver(webDriver);
             }
 
             try {

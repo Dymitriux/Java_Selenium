@@ -41,10 +41,6 @@ public class PageElementLocatorDecorator implements FieldDecorator {
         return new PageElementLocatorHandler(getLocator(field));
     }
 
-//    private PageElementLocator.ElementHandler getElementHandler(Field field) {
-//        return new PageElementLocator.ElementHandler(field, getLocator(field));
-//    }
-
     private ElementLocator getLocator(Field field) {
         return new DefaultElementLocatorFactory(searchContext).createLocator(field);
     }
