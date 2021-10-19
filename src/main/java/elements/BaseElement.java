@@ -1,9 +1,8 @@
 package elements;
 
-import webElementsExtensions.pageWebElements.PageElement;
-import org.openqa.selenium.WebElement;
+import webElementsExtensions.pageWebElementsExperimental.PageElementExample2;
 
-public class BaseElement extends PageElement {
+public class BaseElement extends PageElementExample2 {
 
     public boolean isElementDisplayed() {
         try {
@@ -20,8 +19,4 @@ public class BaseElement extends PageElement {
             return false;
         }
     }
-
-//    protected WebElement getWrappedElement() {
-//        return wrappedElement;
-//    }
 }

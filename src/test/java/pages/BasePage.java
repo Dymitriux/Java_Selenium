@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import utils.LoggingUtils;
 import utils.WebDriverUtils;
+import webElementsExtensions.pageWebElementsExperimental.PageElementLocatorDecorator;
 
 public class BasePage {
 
@@ -13,6 +14,6 @@ public class BasePage {
 
     public BasePage() {
         WebDriver driver = WebDriverUtils.getWebDriver();
-        PageFactory.initElements(new PageElementFieldDecorator(driver, driver), this);
+        PageFactory.initElements(new PageElementLocatorDecorator(driver), this);
     }
 }

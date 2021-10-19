@@ -18,7 +18,6 @@ public class WebDriverUtils {
     public static void getChromeDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("disable-popup-blocking");
-        options.addArguments(ChromeOptions.CAPABILITY);
         driver = new ChromeDriver(options);
     }
 
