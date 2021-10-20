@@ -1,8 +1,8 @@
 package elements;
 
-import webElementsExtensions.pageWebElementsExperimental.PageElementExample2;
+import webElementsExtensions.pageWebElementsBeta.PageElement;
 
-public class BaseElement extends PageElementExample2 {
+public class BaseElement extends PageElement {
 
     public boolean isElementDisplayed() {
         try {

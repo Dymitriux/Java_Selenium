@@ -1,4 +1,4 @@
-package webElementsExtensions.pageWebElements;
+package webElementsExtensions.pageWebElementsBeta;
 
 import org.openqa.selenium.*;
 
@@ -6,19 +6,14 @@ import java.util.List;
 
 public abstract class PageElement implements WebElement {
 
-    protected WebElement wrappedElement;
-//    protected WebDriver webDriver;
+    private WebElement wrappedElement;
 
     public void setRootElement(WebElement rootElement) {
         this.wrappedElement = rootElement;
     }
 
-//    public void setWebDriver(WebDriver webDriver) {
-//        this.webDriver = webDriver;
-//    }
-
-    public WebElement getWrappedElement() {
-        return wrappedElement;
+    protected WebElement getWrappedElement() {
+        return this.wrappedElement;
     }
 
     @Override

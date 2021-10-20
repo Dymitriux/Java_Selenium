@@ -1,9 +1,8 @@
-package webElementsExtensions.pageWebElements;
+package webElementsExtensions.pageWebElementsAlfa;
 
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
 import utils.LoggingUtils;
@@ -55,9 +54,9 @@ public class PageElementLocator {
             }
 
             logger.debug("[{}] intercepted method [{}] on object [{}]", field, method, o);
-            if (o instanceof PageElement) {
+            if (o instanceof PageElementAlfa) {
                 if (!method.getName().equals("setRootElement") && !method.getName().equals("setWebDriver")) {
-                    PageElement pageElement = (PageElement) o;
+                    PageElementAlfa pageElement = (PageElementAlfa) o;
 
                     WebElement element = locateElement();
 

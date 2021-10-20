@@ -1,4 +1,4 @@
-package webElementsExtensions.pageWebElementsExperimental;
+package webElementsExtensions.pageWebElementsBeta;
 
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
@@ -14,7 +14,6 @@ public class PageElementLocatorHandler implements MethodInterceptor {
 
     private final ElementLocator locator;
 
-    // Inject the thing that can lookup a specific element at a later time
     public PageElementLocatorHandler(ElementLocator locator) {
         this.locator = locator;
     }
@@ -37,15 +36,13 @@ public class PageElementLocatorHandler implements MethodInterceptor {
             return methodProxy.invokeSuper(o, objects);
         }
 
-//        logger.debug("[{}] intercepted method [{}] on object [{}]", field, method, o);
-        if (o instanceof PageElementExample2) {
-            if (!method.getName().equals("setRootElement") && !method.getName().equals("setWebDriver")) {
-                PageElementExample2 pageElementExample2 = (PageElementExample2) o;
+        if (o instanceof PageElement) {
+            if (!method.getName().equals("setRootElement")) {
+                PageElement pageElement = (PageElement) o;
 
                 WebElement element = locateElement();
 
-                pageElementExample2.setRootElement(element);
-//                    pageElementExample2.setWebDriver(webDriver);
+                pageElement.setRootElement(element);
             }
 
             try {
@@ -54,14 +51,11 @@ public class PageElementLocatorHandler implements MethodInterceptor {
                 throw e.getCause();
             }
 
-        } else if (o instanceof WebElement ) {// only handle first displayed
+        } else if (o instanceof WebElement) {
             WebElement displayedElement = locateElement();
 
             if (displayedElement != null) {
-//                logger.info("found first displayed. invoking method");
                 return method.invoke(displayedElement, objects);
-            } else {
-//                logger.info("unable to detect first displayed");
             }
         }
         return null;

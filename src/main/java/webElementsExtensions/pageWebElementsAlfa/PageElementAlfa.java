@@ -1,10 +1,10 @@
-package webElementsExtensions.pageWebElementsExperimental;
+package webElementsExtensions.pageWebElementsAlfa;
 
 import org.openqa.selenium.*;
 
 import java.util.List;
 
-public abstract class PageElementExample2 implements WebElement {
+public abstract class PageElementAlfa implements WebElement {
 
     protected WebElement wrappedElement;
 //    protected WebDriver webDriver;

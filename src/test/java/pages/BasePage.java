@@ -1,12 +1,11 @@
 package pages;
 
-import webElementsExtensions.pageWebElements.PageElementFieldDecorator;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import utils.LoggingUtils;
 import utils.WebDriverUtils;
-import webElementsExtensions.pageWebElementsExperimental.PageElementLocatorDecorator;
+import webElementsExtensions.pageWebElementsBeta.PageElementLocatorDecorator;
 
 public class BasePage {
 
