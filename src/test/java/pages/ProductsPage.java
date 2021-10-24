@@ -16,9 +16,6 @@ public class ProductsPage extends BasePage {
     @FindBy(className = "inventory_item")
     private List<WebElement> productPageItemsList;
 
-//    @FindBy(className = "inventory_item_name")
-//    private List<WebElement> productPageItemsNameList;
-
     @FindBy(className = "inventory_item_name")
     private TextField productPageItemsNameList;
 
@@ -28,17 +25,8 @@ public class ProductsPage extends BasePage {
     }
 
     public ProductsPage printOutProducts() {
-//        String productName;
-//        for (WebElement webElement : productPageItemsList) {
-//            productName = webElement.findElement(By.className("inventory_item_name")).getText();
-//            logger.info("Product name: " + productName);
-//        }
-
-//        for (String productName : productPageItemsNameList) {
-//            logger.info("Product name: " + productName);
-//        }
-
         List<String> productsNames = productPageItemsNameList.asStringList();
+
         for (String productName : productsNames) {
             logger.info("Product name: " + productName);
         }
