@@ -39,11 +39,7 @@ public class PageElementLocatorHandler implements MethodInterceptor {
         if (o instanceof PageElement) {
             if (!method.getName().equals("setRootLocator")) {
                 PageElement pageElement = (PageElement) o;
-
-                WebElement element = locateElement();
-
-//                pageElement.setRootElement(element);
-                pageElement.setRootLocator(locator);
+                pageElement.setRootElements(locator);
             }
 
             try {

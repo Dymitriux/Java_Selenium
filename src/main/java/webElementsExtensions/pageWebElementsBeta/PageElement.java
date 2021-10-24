@@ -10,13 +10,7 @@ public abstract class PageElement implements WebElement {
     private WebElement wrappedElement;
     private List<WebElement> wrappedElementsList;
 
-//    private ElementLocator locator;
-
-//    public void setRootElement(WebElement rootElement) {
-//        this.wrappedElement = rootElement;
-//    }
-
-    public void setRootLocator(ElementLocator locator) {
+    public void setRootElements(ElementLocator locator) {
         this.wrappedElement = locator.findElement();
         this.wrappedElementsList = locator.findElements();
     }
