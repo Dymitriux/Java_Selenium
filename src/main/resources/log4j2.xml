@@ -6,9 +6,11 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="com.example" level="INFO"/>
-        <Root level="debug">
+        <Root level="DEBUG">
             <AppenderRef ref="Console"/>
         </Root>
+        <logger name="org.apache" level="ERROR" />
+        <logger name="httpclient" level="ERROR" />
+        <logger name="io.github.bonigarcia.wdm" level="INFO" />
     </Loggers>
 </Configuration>
