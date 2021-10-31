@@ -1,6 +1,6 @@
 package elements;
 
-import webElementsExtensions.pageWebElementsBeta.PageElement;
+import elements.webElementsExtensions.PageElement;
 
 public class BaseElement extends PageElement {
 

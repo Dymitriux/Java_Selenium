@@ -1,4 +1,4 @@
-package webElementsExtensions.pageWebElementsBeta;
+package elements.webElementsExtensions;
 
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
@@ -37,9 +37,9 @@ public class PageElementLocatorHandler implements MethodInterceptor {
         }
 
         if (o instanceof PageElement) {
-            if (!method.getName().equals("setRootLocator")) {
+            if (!method.getName().equals("setRootElement")) {
                 PageElement pageElement = (PageElement) o;
-                pageElement.setRootElements(locator);
+                pageElement.setRootElement(locator);
             }
 
             try {

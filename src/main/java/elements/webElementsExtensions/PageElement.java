@@ -1,24 +1,26 @@
-package webElementsExtensions.pageWebElementsAlfa;
+package elements.webElementsExtensions;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.pagefactory.ElementLocator;
 
 import java.util.List;
 
-public abstract class PageElementAlfa implements WebElement {
+public class PageElement implements WebElement {
 
-    protected WebElement wrappedElement;
-//    protected WebDriver webDriver;
+    private WebElement wrappedElement;
+    private ElementLocator locator;
 
-    public void setRootElement(WebElement rootElement) {
-        this.wrappedElement = rootElement;
+    public void setRootElement(ElementLocator locator) {
+        this.wrappedElement = locator.findElement();
+        this.locator = locator;
     }
 
-//    public void setWebDriver(WebDriver webDriver) {
-//        this.webDriver = webDriver;
-//    }
+    protected WebElement getWrappedElement() {
+        return this.wrappedElement;
+    }
 
-    public WebElement getWrappedElement() {
-        return wrappedElement;
+    protected List<WebElement> getWrappedElementList() {
+        return locator.findElements();
     }
 
     @Override

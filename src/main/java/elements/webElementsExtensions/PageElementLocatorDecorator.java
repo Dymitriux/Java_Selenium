@@ -1,4 +1,4 @@
-package webElementsExtensions.pageWebElementsBeta;
+package elements.webElementsExtensions;
 
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;

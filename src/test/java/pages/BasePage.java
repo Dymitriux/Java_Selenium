@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import utils.LoggingUtils;
 import utils.WebDriverUtils;
-import webElementsExtensions.pageWebElementsBeta.PageElementLocatorDecorator;
+import elements.webElementsExtensions.PageElementLocatorDecorator;
 
 public class BasePage {
 
