@@ -1,26 +1,24 @@
 package elements.webElementsExtensions;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.pagefactory.ElementLocator;
 
 import java.util.List;
 
 public class PageElement implements WebElement {
 
     private WebElement wrappedElement;
-    private ElementLocator locator;
 
-    public void setRootElement(ElementLocator locator) {
-        this.wrappedElement = locator.findElement();
-        this.locator = locator;
+    /**
+     * Name of this method should be included in ignoreMethods list in PageElementLocatorHandler class,
+     * for more details check comments.
+     * @param webElement passed from page element locator handlers
+     */
+    protected void setWrappedElement(WebElement webElement) {
+        this.wrappedElement = webElement;
     }
 
     protected WebElement getWrappedElement() {
-        return this.wrappedElement;
-    }
-
-    protected List<WebElement> getWrappedElementList() {
-        return locator.findElements();
+        return wrappedElement;
     }
 
     @Override
@@ -30,81 +28,81 @@ public class PageElement implements WebElement {
 
     @Override
     public void submit() {
-        this.wrappedElement.submit();
+        wrappedElement.submit();
     }
 
     @Override
     public void sendKeys(CharSequence... charSequences) {
-        this.wrappedElement.sendKeys(charSequences);
+        wrappedElement.sendKeys(charSequences);
     }
 
     @Override
     public void clear() {
-        this.wrappedElement.clear();
+        wrappedElement.clear();
     }
 
     @Override
     public String getTagName() {
-        return this.wrappedElement.getTagName();
+        return wrappedElement.getTagName();
     }
 
     @Override
     public String getAttribute(String attributeName) {
-        return this.wrappedElement.getAttribute(attributeName);
+        return wrappedElement.getAttribute(attributeName);
     }
 
     @Override
     public boolean isSelected() {
-        return this.wrappedElement.isSelected();
+        return wrappedElement.isSelected();
     }
 
     @Override
     public boolean isEnabled() {
-        return this.wrappedElement.isEnabled();
+        return wrappedElement.isEnabled();
     }
 
     @Override
     public String getText() {
-        return this.wrappedElement.getText();
+        return wrappedElement.getText();
     }
 
     @Override
     public List<WebElement> findElements(By by) {
-        return this.wrappedElement.findElements(by);
+        return wrappedElement.findElements(by);
     }
 
     @Override
     public WebElement findElement(By by) {
-        return this.wrappedElement.findElement(by);
+        return wrappedElement.findElement(by);
     }
 
     @Override
     public boolean isDisplayed() {
-        return this.wrappedElement.isDisplayed();
+        return wrappedElement.isDisplayed();
     }
 
     @Override
     public Point getLocation() {
-        return this.wrappedElement.getLocation();
+        return wrappedElement.getLocation();
     }
 
     @Override
     public Dimension getSize() {
-        return this.wrappedElement.getSize();
+        return wrappedElement.getSize();
     }
 
     @Override
     public Rectangle getRect() {
-        return this.wrappedElement.getRect();
+        return wrappedElement.getRect();
     }
 
     @Override
     public String getCssValue(String value) {
-        return this.wrappedElement.getCssValue(value);
+        return wrappedElement.getCssValue(value);
     }
 
     @Override
     public <X> X getScreenshotAs(OutputType<X> outputType) throws WebDriverException {
-        return this.wrappedElement.getScreenshotAs(outputType);
+        return wrappedElement.getScreenshotAs(outputType);
     }
 }
