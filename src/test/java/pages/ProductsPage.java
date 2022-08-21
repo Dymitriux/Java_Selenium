@@ -17,7 +17,7 @@ public class ProductsPage extends BasePage {
     private List<WebElement> productPageItemsList;
 
     @FindBy(className = "inventory_item_name")
-    private TextField productPageItemsNameList;
+    private List<TextField> productPageItemsNameList;
 
     public ProductsPage waitForCartLinkToBeDisplayed() {
         WaitUtils.waitForElementToBeVisible(shoppingCartLink);
@@ -25,10 +25,8 @@ public class ProductsPage extends BasePage {
     }
 
     public ProductsPage printOutProducts() {
-        List<String> productsNames = productPageItemsNameList.asStringList();
-
-        for (String productName : productsNames) {
-            logger.info("Product name: " + productName);
+        for (TextField productName : productPageItemsNameList) {
+            logger.info("Product name: " + productName.getText());
         }
         return this;
     }

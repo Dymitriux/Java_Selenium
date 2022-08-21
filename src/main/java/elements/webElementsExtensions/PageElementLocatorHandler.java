@@ -1,60 +1,42 @@
 package elements.webElementsExtensions;
 
-import net.sf.cglib.proxy.MethodInterceptor;
-import net.sf.cglib.proxy.MethodProxy;
+import javassist.util.proxy.MethodHandler;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Arrays;
+import java.util.List;
 
-public class PageElementLocatorHandler implements MethodInterceptor {
+public class PageElementLocatorHandler implements MethodHandler {
 
     private final ElementLocator locator;
+    /* Methods to be skipped on invocation to secure that infinite loop will not occur on method invocation */
+    private final List<String> ignoreMethods = Arrays.asList("setWrappedElement", "hashCode", "toString");
 
     public PageElementLocatorHandler(ElementLocator locator) {
         this.locator = locator;
     }
 
-    private static Set<String> ignoredMethods = new HashSet<>() {
-        {
-            add("toString");
-            add("hashCode");
-        }
-    };
-
-    private WebElement locateElement() {
-        return locator.findElement();
-    }
-
     @Override
-    public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
-
-        if (ignoredMethods.contains(method.getName())) {
-            return methodProxy.invokeSuper(o, objects);
+    public Object invoke(Object o, Method method, Method proceed, Object[] objects) throws Throwable {
+        if (ignoreMethods.contains(method.getName())) {
+            return proceed.invoke(o, objects);
         }
 
-        if (o instanceof PageElement) {
-            if (!method.getName().equals("setRootElement")) {
-                PageElement pageElement = (PageElement) o;
-                pageElement.setRootElement(locator);
-            }
+        WebElement element = locator.findElement();
 
-            try {
-                return methodProxy.invokeSuper(o, objects);
-            } catch (InvocationTargetException e) {
-                throw e.getCause();
-            }
+        PageElement pageElement = (PageElement) o;
+        /* Name of this method (setWrappedElement) need to be included in ignoreMethods list
+        to secure that infinite loop will not occur on method invocation */
+        pageElement.setWrappedElement(element);
 
-        } else if (o instanceof WebElement) {
-            WebElement displayedElement = locateElement();
-
-            if (displayedElement != null) {
-                return method.invoke(displayedElement, objects);
-            }
+        try {
+            return proceed.invoke(o, objects);
+        } catch (InvocationTargetException e) {
+            throw e.getCause();
         }
-        return null;
     }
 }

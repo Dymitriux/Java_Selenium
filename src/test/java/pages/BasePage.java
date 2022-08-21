@@ -9,7 +9,7 @@ import elements.webElementsExtensions.PageElementLocatorDecorator;
 
 public class BasePage {
 
-    public Logger logger = LoggingUtils.getLogger();
+    public Logger logger = LoggingUtils.getLogger(this.getClass());
 
     public BasePage() {
         WebDriver driver = WebDriverUtils.getWebDriver();
