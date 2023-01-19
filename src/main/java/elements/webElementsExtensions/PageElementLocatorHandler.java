@@ -13,11 +13,13 @@ import java.util.List;
 public class PageElementLocatorHandler implements MethodHandler {
 
     private final ElementLocator locator;
+    private final String elementName;
     /* Methods to be skipped on invocation to secure that infinite loop will not occur on method invocation */
     private final List<String> ignoreMethods = Arrays.asList("setWrappedElement", "hashCode", "toString");
 
-    public PageElementLocatorHandler(ElementLocator locator) {
+    public PageElementLocatorHandler(ElementLocator locator, String elementName) {
         this.locator = locator;
+        this.elementName = elementName;
     }
 
     @Override
@@ -31,7 +33,7 @@ public class PageElementLocatorHandler implements MethodHandler {
         PageElement pageElement = (PageElement) o;
         /* Name of this method (setWrappedElement) need to be included in ignoreMethods list
         to secure that infinite loop will not occur on method invocation */
-        pageElement.setWrappedElement(element);
+        pageElement.setWrappedElement(element, elementName);
 
         try {
             return proceed.invoke(o, objects);

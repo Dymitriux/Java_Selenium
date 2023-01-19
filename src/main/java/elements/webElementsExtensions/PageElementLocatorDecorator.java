@@ -1,5 +1,6 @@
 package elements.webElementsExtensions;
 
+import elements.findByExtension.ExtendedFindBy;
 import exceptions.NewInstanceException;
 import javassist.util.proxy.MethodHandler;
 import javassist.util.proxy.ProxyFactory;
@@ -35,14 +36,23 @@ public class PageElementLocatorDecorator implements FieldDecorator {
     public Object decorate(ClassLoader loader, Field field) {
         Class<?> type = field.getType();
 
-        if (PageElement.class.isAssignableFrom(type) && field.isAnnotationPresent(FindBy.class)) {
-            return getProxyElement(type, new PageElementLocatorHandler(getLocator(field)));
+        if (PageElement.class.isAssignableFrom(type) &&
+                (field.isAnnotationPresent(FindBy.class) || field.isAnnotationPresent(ExtendedFindBy.class))) {
+            return getProxyElement(type, new PageElementLocatorHandler(getLocator(field), getName(field)));
 
         } else if (isPageElementList(field)) {
             return getProxyElementList(type, new PageElementLocatorListHandler(getLocator(field), listType));
 
         } else {
             return defaultFieldDecorator.decorate(loader, field);
+        }
+    }
+
+    private String getName(Field field) {
+        if (field.isAnnotationPresent(ExtendedFindBy.class) && (!field.getAnnotation(ExtendedFindBy.class).friendlyName().isEmpty())) {
+            return field.getAnnotation(ExtendedFindBy.class).friendlyName();
+        } else {
+            return field.getName();
         }
     }
 
