@@ -7,18 +7,24 @@ import java.util.List;
 public class PageElement implements WebElement {
 
     private WebElement wrappedElement;
+    private String elementName;
 
     /**
      * Name of this method should be included in ignoreMethods list in PageElementLocatorHandler class,
      * for more details check comments.
      * @param webElement passed from page element locator handlers
      */
-    protected void setWrappedElement(WebElement webElement) {
+    protected void setWrappedElement(WebElement webElement, String elementName) {
         this.wrappedElement = webElement;
+        this.elementName = elementName != null ? elementName : "Element is in list";
     }
 
     protected WebElement getWrappedElement() {
         return wrappedElement;
+    }
+
+    public String getElementName() {
+        return elementName;
     }
 
     @Override
