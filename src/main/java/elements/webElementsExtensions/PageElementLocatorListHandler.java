@@ -40,7 +40,7 @@ public class PageElementLocatorListHandler implements MethodHandler {
             throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 
         PageElement pageElement = listType.getConstructor().newInstance();
-        pageElement.setWrappedElement(element);
+        pageElement.setWrappedElement(element, null);
 
         return (T) pageElement;
     }
