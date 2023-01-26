@@ -11,6 +11,5 @@
         </Root>
         <logger name="org.apache" level="ERROR" />
         <logger name="httpclient" level="ERROR" />
-        <logger name="io.github.bonigarcia.wdm" level="INFO" />
     </Loggers>
 </Configuration>

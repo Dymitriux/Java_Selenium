@@ -1,10 +1,10 @@
 package tests;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
+import utils.BrowserType;
 import utils.WebDriverUtils;
 
 public class BaseTest {
@@ -13,7 +13,8 @@ public class BaseTest {
 
     @BeforeAll
     static void beforeAll() {
-        WebDriverManager.chromedriver().setup();
+        /* Available options: CHROME, EDGE, FIREFOX */
+        WebDriverUtils.initDriver(BrowserType.CHROME);
     }
 
     @BeforeEach
