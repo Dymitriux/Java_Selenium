@@ -14,7 +14,7 @@ public class BaseTest {
     @BeforeAll
     static void beforeAll() {
         /* Available options: CHROME, EDGE, FIREFOX */
-        WebDriverUtils.initDriver(BrowserType.CHROME);
+        WebDriverUtils.setBrowserType(BrowserType.EDGE);
     }
 
     @BeforeEach

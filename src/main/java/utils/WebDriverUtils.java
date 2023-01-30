@@ -11,43 +11,44 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 public class WebDriverUtils {
 
     private static WebDriver driver;
+    private static BrowserType browserType = BrowserType.CHROME;
 
     /**
-     * @return initialized WebDriver, if init was not performed then chrome browser will be used as default
+     * If setBrowserType method was not called then Chrome browser will be initialized.
+     * @return initialized WebDriver
      */
     public static WebDriver getWebDriver() {
         if (driver == null) {
-            getChromeDriver();
+            initDriver(browserType);
         }
         return driver;
     }
 
-    /**
-     * Method used to init driver, if this method will be skipped/removed from flow then chrome browser will be used as default
-     *
-     * @param type type of browser
-     */
-    public static void initDriver(BrowserType type) {
+    public static void setBrowserType(BrowserType type) {
+        browserType = type;
+    }
+
+    private static void initDriver(BrowserType type) {
         switch (type) {
-            case EDGE -> getEdgeDriver();
-            case CHROME -> getChromeDriver();
-            case FIREFOX -> getFirefoxDriver();
+            case EDGE -> setEdgeDriver();
+            case CHROME -> setChromeDriver();
+            case FIREFOX -> setFirefoxDriver();
         }
     }
 
-    private static void getChromeDriver() {
+    private static void setChromeDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("disable-popup-blocking");
         driver = new ChromeDriver(options);
     }
 
-    private static void getFirefoxDriver() {
+    private static void setFirefoxDriver() {
         FirefoxOptions options = new FirefoxOptions();
         options.addArguments("disable-popup-blocking");
         driver = new FirefoxDriver(options);
     }
 
-    private static void getEdgeDriver() {
+    private static void setEdgeDriver() {
         EdgeOptions options = new EdgeOptions();
         options.addArguments("disable-popup-blocking");
         driver = new EdgeDriver(options);
