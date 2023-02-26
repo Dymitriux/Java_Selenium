@@ -12,6 +12,7 @@ public class WebDriverUtils {
 
     private static WebDriver driver;
     private static BrowserType browserType = BrowserType.CHROME;
+    private static final String[] OPTIONS_ARGUMENTS = new String[]{"disable-popup-blocking"};
 
     /**
      * If setBrowserType method was not called then Chrome browser will be initialized.
@@ -38,19 +39,19 @@ public class WebDriverUtils {
 
     private static void setChromeDriver() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("disable-popup-blocking");
+        options.addArguments(OPTIONS_ARGUMENTS);
         driver = new ChromeDriver(options);
     }
 
     private static void setFirefoxDriver() {
         FirefoxOptions options = new FirefoxOptions();
-        options.addArguments("disable-popup-blocking");
+        options.addArguments(OPTIONS_ARGUMENTS);
         driver = new FirefoxDriver(options);
     }
 
     private static void setEdgeDriver() {
         EdgeOptions options = new EdgeOptions();
-        options.addArguments("disable-popup-blocking");
+        options.addArguments(OPTIONS_ARGUMENTS);
         driver = new EdgeDriver(options);
     }
 
