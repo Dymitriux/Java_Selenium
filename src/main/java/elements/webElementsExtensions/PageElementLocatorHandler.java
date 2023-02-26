@@ -1,7 +1,6 @@
 package elements.webElementsExtensions;
 
 import javassist.util.proxy.MethodHandler;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
 

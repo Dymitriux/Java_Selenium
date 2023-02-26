@@ -6,7 +6,7 @@ public class BaseElement extends PageElement {
 
     public boolean isElementDisplayed() {
         try {
-            return getWrappedElement().isDisplayed();
+            return isDisplayed();
         } catch (Exception e) {
             return false;
         }
@@ -14,7 +14,7 @@ public class BaseElement extends PageElement {
 
     public boolean isElementSelected() {
         try {
-            return getWrappedElement().isSelected();
+            return isSelected();
         } catch (Exception e) {
             return false;
         }

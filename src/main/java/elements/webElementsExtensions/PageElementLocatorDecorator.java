@@ -23,9 +23,10 @@ import java.util.List;
 
 public class PageElementLocatorDecorator implements FieldDecorator {
 
-    final DefaultFieldDecorator defaultFieldDecorator;
-    final SearchContext searchContext;
+    private final DefaultFieldDecorator defaultFieldDecorator;
+    private final SearchContext searchContext;
     private Class<? extends PageElement> listType;
+    private String elementName;
 
     public PageElementLocatorDecorator(SearchContext searchContext) {
         this.searchContext = searchContext;
@@ -35,24 +36,25 @@ public class PageElementLocatorDecorator implements FieldDecorator {
     @Override
     public Object decorate(ClassLoader loader, Field field) {
         Class<?> type = field.getType();
+        setName(field);
 
         if (PageElement.class.isAssignableFrom(type) &&
                 (field.isAnnotationPresent(FindBy.class) || field.isAnnotationPresent(ExtendedFindBy.class))) {
-            return getProxyElement(type, new PageElementLocatorHandler(getLocator(field), getName(field)));
+            return getProxyElement(type, new PageElementLocatorHandler(getLocator(field), elementName));
 
         } else if (isPageElementList(field)) {
-            return getProxyElementList(type, new PageElementLocatorListHandler(getLocator(field), listType));
+            return getProxyElementList(type, new PageElementLocatorListHandler(getLocator(field), listType, elementName));
 
         } else {
             return defaultFieldDecorator.decorate(loader, field);
         }
     }
 
-    private String getName(Field field) {
+    private void setName(Field field) {
         if (field.isAnnotationPresent(ExtendedFindBy.class) && (!field.getAnnotation(ExtendedFindBy.class).friendlyName().isEmpty())) {
-            return field.getAnnotation(ExtendedFindBy.class).friendlyName();
+            elementName = field.getAnnotation(ExtendedFindBy.class).friendlyName();
         } else {
-            return field.getName();
+            elementName = field.getName();
         }
     }
 
@@ -84,7 +86,8 @@ public class PageElementLocatorDecorator implements FieldDecorator {
         ProxyObject instance;
         try {
             instance = (ProxyObject) aClass.getConstructor().newInstance();
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
+                 NoSuchMethodException e) {
             throw new NewInstanceException("Class " + simpleName
                     + " should have default constructor or constructor without parameters.");
         }

@@ -12,11 +12,14 @@ import java.util.List;
 public class PageElementLocatorListHandler implements MethodHandler {
 
     private final ElementLocator locator;
+    private final String elementName;
     private Class<? extends PageElement> listType;
+    private int counter;
 
-    public PageElementLocatorListHandler(ElementLocator locator, Class<? extends PageElement> listType) {
+    public PageElementLocatorListHandler(ElementLocator locator, Class<? extends PageElement> listType, String elementName) {
         this.locator = locator;
         this.listType = listType;
+        this.elementName = elementName;
     }
 
     @Override
@@ -24,6 +27,7 @@ public class PageElementLocatorListHandler implements MethodHandler {
         List<PageElement> wrappedList = new ArrayList<>();
 
         for (WebElement element : locator.findElements()) {
+            counter ++;
             PageElement instanceOf = createInstanceOf(element);
             wrappedList.add(instanceOf);
         }
@@ -40,7 +44,7 @@ public class PageElementLocatorListHandler implements MethodHandler {
             throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 
         PageElement pageElement = listType.getConstructor().newInstance();
-        pageElement.setWrappedElement(element, null);
+        pageElement.setWrappedElement(element, elementName + " " + counter);
 
         return (T) pageElement;
     }
