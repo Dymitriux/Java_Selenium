@@ -4,11 +4,13 @@ import elements.Button;
 import elements.TextField;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import utils.WaitUtils;
 
 import java.util.List;
 
-public class ProductsPage extends BasePage {
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static utils.WaitUtils.waitForElementToBeVisible;
+
+public class ProductsPage extends _PageInit {
 
     @FindBy(className = "shopping_cart_link")
     private Button shoppingCartLink;
@@ -19,14 +21,18 @@ public class ProductsPage extends BasePage {
     @FindBy(className = "inventory_item_name")
     private List<TextField> productPageItemsNameList;
 
-    public ProductsPage waitForCartLinkToBeDisplayed() {
-        WaitUtils.waitForElementToBeVisible(shoppingCartLink);
-        return this;
+    @FindBy(className = "inventory_item_name")
+    private TextField firstProduct;
+
+    public void assertCorrectLogin() {
+        assertDoesNotThrow(() -> waitForElementToBeVisible(shoppingCartLink, 3),
+                "Product page after login action was not displayed.");
     }
 
     public ProductsPage printOutProducts() {
+        waitForElementToBeVisible(firstProduct);
         for (TextField productName : productPageItemsNameList) {
-            logger.info("Product name: " + productName.getText());
+            logger.info("Product name: {}", productName.getText());
         }
         return this;
     }

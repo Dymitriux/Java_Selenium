@@ -7,11 +7,11 @@ import utils.LoggingUtils;
 import utils.WebDriverUtils;
 import elements.webElementsExtensions.PageElementLocatorDecorator;
 
-public class BasePage {
+public class _PageInit {
 
     public Logger logger = LoggingUtils.getLogger(this.getClass());
 
-    public BasePage() {
+    public _PageInit() {
         WebDriver driver = WebDriverUtils.getWebDriver();
         PageFactory.initElements(new PageElementLocatorDecorator(driver), this);
     }

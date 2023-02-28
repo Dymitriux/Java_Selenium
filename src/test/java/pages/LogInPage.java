@@ -4,8 +4,11 @@ import elements.Button;
 import elements.TextField;
 import elements.findByExtension.ExtendedFindBy;
 import org.openqa.selenium.support.FindBy;
+import utils.WaitUtils;
 
-public class LogInPage extends BasePage {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class LogInPage extends _PageInit {
 
     @ExtendedFindBy(id = "user-name", friendlyName = "User name field")
     private TextField userNameField;
@@ -16,14 +19,15 @@ public class LogInPage extends BasePage {
     @FindBy(id = "login-button")
     private Button loginButton;
 
+    @FindBy(className = "error-message-container")
+    private TextField failedLoginMessage;
+
     public LogInPage enterUserName(String userName) {
-        System.out.println("Sending " + userName + " to " + userNameField.getElementName());
         userNameField.clearSendText(userName);
         return this;
     }
 
     public LogInPage enterUserPassword(String userPassword) {
-        System.out.println("Sending " + userPassword + " to " + userPasswordField.getElementName());
         userPasswordField.clearSendText(userPassword);
         return this;
     }
@@ -31,5 +35,11 @@ public class LogInPage extends BasePage {
     public ProductsPage clickOnLoginButton() {
         loginButton.click();
         return new ProductsPage();
+    }
+
+    public void assertErrorMessage(String expectedErrorMessage) {
+        String actualErrorMessage = WaitUtils.waitForElementToBeVisible(failedLoginMessage).getText();
+        assertEquals(expectedErrorMessage, actualErrorMessage,
+                "Actual error message:" + actualErrorMessage + " is not equal to expected: " + expectedErrorMessage);
     }
 }
