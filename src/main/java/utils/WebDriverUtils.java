@@ -12,7 +12,7 @@ public class WebDriverUtils {
 
     private static WebDriver driver;
     private static BrowserType browserType = BrowserType.CHROME;
-    private static final String[] OPTIONS_ARGUMENTS = new String[]{"disable-popup-blocking"};
+    private static final String[] OPTIONS_ARGUMENTS = new String[]{"disable-popup-blocking", "--remote-allow-origins=*"};
 
     /**
      * If setBrowserType method was not called then Chrome browser will be initialized.
@@ -40,7 +40,6 @@ public class WebDriverUtils {
     private static void setChromeDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments(OPTIONS_ARGUMENTS);
-        options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
     }
 
