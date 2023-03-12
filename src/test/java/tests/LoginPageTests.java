@@ -1,9 +1,12 @@
 package tests;
 
+import io.qameta.allure.Description;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.LogInPage;
 
+@DisplayName("Login page Tests")
 public class LoginPageTests extends _TestsHooks {
 
     @BeforeEach
@@ -12,6 +15,8 @@ public class LoginPageTests extends _TestsHooks {
     }
 
     @Test
+    @DisplayName("Correct data login")
+    @Description("Log in with correct user")
     public void correctDataLoginTest() {
         LogInPage logInPage = new LogInPage();
         logInPage
@@ -22,6 +27,7 @@ public class LoginPageTests extends _TestsHooks {
     }
 
     @Test
+    @Description("Try to log in with incorrect user")
     public void incorrectDataLoginTest() {
         LogInPage logInPage = new LogInPage();
         logInPage
@@ -32,6 +38,7 @@ public class LoginPageTests extends _TestsHooks {
     }
 
     @Test
+    @Description("Try to log in with locked user")
     public void lockedUserLoginTest() {
         LogInPage logInPage = new LogInPage();
         logInPage
