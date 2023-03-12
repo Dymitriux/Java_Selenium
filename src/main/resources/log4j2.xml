@@ -2,7 +2,8 @@
 <Configuration>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout disableAnsi="false" pattern="%highlight{%style{%d{HH:mm:ss.SSS} [%t] %-5level %logger{36}: %msg%n}{BRIGHT}}{FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=blue, TRACE=orange}"/>
+<!--            <PatternLayout disableAnsi="false" pattern="%highlight{%style{%d{HH:mm:ss.SSS} [%t] %-5level %logger{36}: %msg%n}{BRIGHT}}{FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=blue, TRACE=orange}"/>-->
+            <PatternLayout disableAnsi="false" pattern="%highlight{%d{HH:mm:ss.SSS} [%t] %-5level %logger{36}: %msg%n}{FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=blue, TRACE=orange}"/>
             <follow>true</follow>
         </Console>
     </Appenders>
