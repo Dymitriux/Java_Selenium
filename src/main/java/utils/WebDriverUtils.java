@@ -40,6 +40,7 @@ public class WebDriverUtils {
     private static void setChromeDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments(OPTIONS_ARGUMENTS);
+        options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
     }
 
