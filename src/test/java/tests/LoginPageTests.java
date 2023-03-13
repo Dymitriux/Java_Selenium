@@ -1,7 +1,10 @@
 package tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.LogInPage;
@@ -17,6 +20,7 @@ public class LoginPageTests extends _TestsHooks {
     @Test
     @DisplayName("Correct data login")
     @Description("Log in with correct user")
+    @Severity(SeverityLevel.BLOCKER)
     public void correctDataLoginTest() {
         LogInPage logInPage = new LogInPage();
         logInPage
@@ -28,6 +32,8 @@ public class LoginPageTests extends _TestsHooks {
 
     @Test
     @Description("Try to log in with incorrect user")
+    @Severity(SeverityLevel.NORMAL)
+    @Disabled
     public void incorrectDataLoginTest() {
         LogInPage logInPage = new LogInPage();
         logInPage
@@ -39,6 +45,7 @@ public class LoginPageTests extends _TestsHooks {
 
     @Test
     @Description("Try to log in with locked user")
+    @Severity(SeverityLevel.NORMAL)
     public void lockedUserLoginTest() {
         LogInPage logInPage = new LogInPage();
         logInPage

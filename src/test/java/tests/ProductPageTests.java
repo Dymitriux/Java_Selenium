@@ -1,6 +1,8 @@
 package tests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,6 +21,7 @@ public class ProductPageTests extends _TestsHooks {
     }
 
     @Test
+    @Severity(SeverityLevel.CRITICAL)
     @Description("Print out products")
     public void printOutProductsTest() {
         ProductsPage productsPage = new ProductsPage();
