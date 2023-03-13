@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static utils.WaitUtils.waitForElementToBeVisible;
 
 public class ProductsPage extends _PageInit {
@@ -35,5 +36,11 @@ public class ProductsPage extends _PageInit {
             logger.info("Product name: {}", productName.getText());
         }
         return this;
+    }
+
+    public void assertNumberOfProducts(int expectedNumberOfProducts) {
+        int actualNumberOfProducts = productPageItemsList.size();
+        assertEquals(expectedNumberOfProducts, actualNumberOfProducts, "Actual number of products: "
+                + actualNumberOfProducts + " is not equal to expected: " + expectedNumberOfProducts);
     }
 }

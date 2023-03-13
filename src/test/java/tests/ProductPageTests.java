@@ -22,10 +22,12 @@ public class ProductPageTests extends _TestsHooks {
 
     @Test
     @Severity(SeverityLevel.CRITICAL)
-    @Description("Print out products")
-    public void printOutProductsTest() {
+    @DisplayName("Products page products number tests")
+    @Description("Print out products and confirm number of products ")
+    public void printOutAndCountProductsTest() {
         ProductsPage productsPage = new ProductsPage();
         productsPage
-                .printOutProducts();
+                .printOutProducts()
+                .assertNumberOfProducts(6);
     }
 }
