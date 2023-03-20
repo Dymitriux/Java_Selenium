@@ -39,7 +39,6 @@ public class LogInPage extends _PageInit {
 
     public void assertErrorMessage(String expectedErrorMessage) {
         String actualErrorMessage = WaitUtils.waitForElementToBeVisible(failedLoginMessage).getText();
-        assertEquals(expectedErrorMessage, actualErrorMessage,
-                "Actual error message:" + actualErrorMessage + " is not equal to expected: " + expectedErrorMessage);
+        assertEquals(expectedErrorMessage, actualErrorMessage, "Actual error message is not equal to expected.");
     }
 }

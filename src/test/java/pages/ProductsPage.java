@@ -40,7 +40,6 @@ public class ProductsPage extends _PageInit {
 
     public void assertNumberOfProducts(int expectedNumberOfProducts) {
         int actualNumberOfProducts = productPageItemsList.size();
-        assertEquals(expectedNumberOfProducts, actualNumberOfProducts, "Actual number of products: "
-                + actualNumberOfProducts + " is not equal to expected: " + expectedNumberOfProducts);
+        assertEquals(expectedNumberOfProducts, actualNumberOfProducts, "Actual number of products is not equal to expected.");
     }
 }

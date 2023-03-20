@@ -4,7 +4,6 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.LogInPage;
@@ -33,14 +32,13 @@ public class LoginPageTests extends _TestsHooks {
     @Test
     @Description("Try to log in with incorrect user")
     @Severity(SeverityLevel.NORMAL)
-    @Disabled
     public void incorrectDataLoginTest() {
         LogInPage logInPage = new LogInPage();
         logInPage
                 .enterUserName("not_existing_user")
                 .enterUserPassword("secret_sauce")
                 .clickOnLoginButton();
-        logInPage.assertErrorMessage("Epic sadface: Username and password do not match any user in this service");
+        logInPage.assertErrorMessage("Ep sadface: Username and password do not match any user in this service");
     }
 
     @Test
