@@ -45,7 +45,7 @@ public class PageElement implements WebElement {
 
     @Override
     public void sendKeys(CharSequence... charSequences) {
-        logger.debug("Sending [{}] to [{}] field.", Arrays.toString(charSequences), elementName);
+        logger.debug("Sending {} to [{}] field.", Arrays.toString(charSequences), elementName);
         wrappedElement.sendKeys(charSequences);
     }
 
