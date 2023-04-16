@@ -14,10 +14,9 @@ public class ProductPageTests extends _TestsHooks {
 
     @BeforeEach
     public void beforeTest() {
-        driver.get(LOG_IN_PAGE_URL);
         driver.manage().addCookie(new Cookie("session-username", "standard_user"));
         driver.manage().addCookie(new Cookie("session-password", "secret_sauce"));
-        driver.get(LOG_IN_PAGE_URL + "/inventory.html");
+        driver.get(testData.getInventoryUrl());
     }
 
     @Test
