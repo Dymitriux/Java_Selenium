@@ -11,7 +11,7 @@
     <properties>
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <log4j.version>2.17.2</log4j.version>
+        <log4j.version>2.25.3</log4j.version>
         <aspectj.version>1.8.10</aspectj.version>
         <selenium>4.8.1</selenium>
         <javassist>3.29.0-GA</javassist>
